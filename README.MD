@@ -42,6 +42,14 @@ const breaker = require('axios-breaker');
      retry: 3 // Number of retry you want perform once failure.
      noResponseRetries: 2 //Number of retry once there is no response from the api.
      retryDelay: 100 // Amount of delay in milliseconds in between retries.
+     // HTTP methods to automatically retry.  Defaults to:
+    // ['GET', 'HEAD', 'OPTIONS', 'DELETE', 'PUT']
+    httpMethodsToRetry: ['GET', 'HEAD', 'OPTIONS', 'DELETE', 'PUT','PATCH'],
+ 
+    // The response status codes to retry.  Supports a double
+    // array with a list of ranges.  Defaults to:
+    // [[100, 199], [419, 429], [500, 599]]
+    statusCodesToRetry: [[100, 199], [429, 429], [500, 599]],
      options: { //customizaable optionsfor circuit breaker
         failureThreshold: 3, // maximum no of failed before circuit break,
         successThreshold: 2, // maximum success call to close the circuit
@@ -52,8 +60,8 @@ const breaker = require('axios-breaker');
 ```
 # Implementation
 ```
- const instance = breaker.ajaxInstance(config);
-
+const instance = breaker.ajaxInstance(config);
+GET Example:
  instance
   .get('API_END_POINT')
             .then((result) => {
@@ -62,5 +70,19 @@ const breaker = require('axios-breaker');
             .catch((error) => {
               return error;
             });
+
+POST example:
+instance
+        .post(
+            `API_END_POINT`,
+            req.body,
+            { headers: 'HEADER_CONFIG'}
+          )
+          .then((result) => {
+            return result;
+          })
+          .catch((error) => {
+            return error;
+          });
 
 ```

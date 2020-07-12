@@ -20,8 +20,8 @@ module.exports = {
         retry: breakerConfig.retry || 3,
         noResponseRetries: breakerConfig.noResponseRetries || 2,
         retryDelay: breakerConfig.retryDelay || 100,
-        httpMethodsToRetry: ['GET', 'POST', 'HEAD', 'OPTIONS', 'DELETE', 'PUT','PATCH'],
-        statusCodesToRetry: [
+        httpMethodsToRetry: breakerConfig.httpMethodsToRetry || ['GET', 'POST', 'HEAD', 'OPTIONS', 'DELETE', 'PUT','PATCH'],
+        statusCodesToRetry: breakerConfig.statusCodesToRetry || [
           [100, 199],
           [419, 429],
           [500, 599]
