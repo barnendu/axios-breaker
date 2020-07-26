@@ -1,8 +1,8 @@
-import axios from 'axios';
-import * as rax from 'retry-axios';
+const  axios = require("axios");
+const  rax = require("retry-axios");
 const http = require('http');
 const https = require('https');
-import BorneCircuitBreaker from './lib/borneCircuitBreaker';
+const  BorneCircuitBreaker = require("./lib/borneCircuitBreaker");
 module.exports = {
     ajaxInstance: (breakerConfig) => {
       const axiosAgent = axios.create({

@@ -1,6 +1,6 @@
 {
   "name": "axios-breaker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "axios retry and circuit braker mechanism",
   "main": "index.js",
   "scripts": {
@@ -11,22 +11,22 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/barnendu/axios-breaker.git"
-   },
-   "bugs": {
+  },
+  "bugs": {
     "url": "https://github.com/philipszdavido/axios-breaker/issues"
-   },
-   "homepage":"https://github.com/barnendu/axios-breaker#readme",
-   "keywords": [ 
-    "axios", 
-    "axios-retry", 
+  },
+  "homepage": "https://github.com/barnendu/axios-breaker#readme",
+  "keywords": [
+    "axios",
+    "axios-retry",
     "retry-axios",
     "circuit-breaker",
     "circuit"
-   ],
+  ],
   "dependencies": {
     "axios": "^0.19.2",
-    "axios-retry": "^3.1.8",
     "http": "0.0.1-security",
-    "https": "^1.0.0"
+    "https": "^1.0.0",
+    "retry-axios": "^2.2.1"
   }
 }
