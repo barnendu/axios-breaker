@@ -3,6 +3,7 @@ const  rax = require("retry-axios");
 const http = require('http');
 const https = require('https');
 const  BorneCircuitBreaker = require("./lib/borneCircuitBreaker");
+rax.attach();
 module.exports = {
     ajaxInstance: (breakerConfig) => {
       const axiosAgent = axios.create({
@@ -15,7 +16,7 @@ module.exports = {
           https: true
         })
       });
-  
+      const breaker = new BorneCircuitBreaker(breakerConfig.options);
       axiosAgent.defaults.raxConfig = {
         retry: breakerConfig.retry || 3,
         noResponseRetries: breakerConfig.noResponseRetries || 2,
@@ -42,18 +43,16 @@ module.exports = {
          config => {
           try {
               config.adapter = async(config) =>{
-              async function proxyCall(){
-                const response= await axios({
-                  url:config.url,
-                  method:config.method,
-                  data:config.data,
-                  header:config.headers
-                });
-                return  Promise.resolve(response);
-              }
-                const breaker = new BorneCircuitBreaker(proxyCall,breakerConfig.options);
-                return breaker.exec();
-                  
+                async function proxyCall(){
+                  const response= await axios({
+                    url:config.url,
+                    method:config.method,
+                    data:config.data,
+                    header:config.headers
+                  });
+                  return  Promise.resolve(response);
+                }
+                return breaker.exec(proxyCall);
               };
               return {
                 ...config,

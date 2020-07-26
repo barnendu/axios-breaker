@@ -1,6 +1,6 @@
 {
   "name": "axios-breaker",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "axios retry and circuit braker mechanism",
   "main": "index.js",
   "scripts": {

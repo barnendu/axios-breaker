@@ -41,9 +41,9 @@ const breaker = require('axios-breaker');
 ## Configuration
 ```
  const config = {
-     retry: 3 // Number of retry you want perform once failure.
-     noResponseRetries: 2 //Number of retry once there is no response from the api.
-     retryDelay: 100 // Amount of delay in milliseconds in between retries.
+     retry: 3,// Number of retry you want perform once failure.
+     noResponseRetries: 2, //Number of retry once there is no response from the api.
+     retryDelay: 100 ,// Amount of delay in milliseconds in between retries.
      // HTTP methods to automatically retry.  Defaults to:
     // ['GET', 'HEAD', 'OPTIONS', 'DELETE', 'PUT']
     httpMethodsToRetry: ['GET', 'HEAD', 'OPTIONS', 'DELETE', 'PUT','PATCH'],
@@ -67,24 +67,28 @@ GET Example:
  instance
   .get('API_END_POINT')
             .then((result) => {
-              return result;
+              return result.data;
+              // if you are using node request controller then res.send(result.data)
             })
             .catch((error) => {
               return error;
+              // if you are using node request controller then res.send(error)
             });
 
 POST example:
 instance
         .post(
             `API_END_POINT`,
-            req.body,
+            body,
             { headers: 'HEADER_CONFIG'}
           )
           .then((result) => {
             return result;
+            // if you are using node request controller then res.send(result.data)
           })
           .catch((error) => {
             return error;
+            // if you are using node request controller then res.send(error)
           });
 
 ```
