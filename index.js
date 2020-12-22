@@ -62,12 +62,12 @@ module.exports = {
                 }
               };
           } catch (err) {
-            logger.error('Cache Error:', err);
+            console.error('Cache Error:', err);
             return config;
           }
         },
         function(error) {
-          logger.error('Error before sending request', error);
+          console.error('Error before sending request', error);
           return Promise.reject(error);
         }
       );
@@ -78,7 +78,7 @@ module.exports = {
         },
         function(error) {
           if (error.statusCode >= 300) {
-            logger.error('Response Error: ', error);
+            console.error('Response Error: ', error);
           }
           return Promise.reject(error);
         }
