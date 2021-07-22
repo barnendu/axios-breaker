@@ -1,10 +1,10 @@
-const  axios = require("axios");
-const  rax = require("retry-axios");
-const http = require('http');
-const https = require('https');
-const  BorneCircuitBreaker = require("./lib/borneCircuitBreaker");
+import axios from 'axios';
+import * as  rax from "retry-axios";
+import http from 'http';
+import https from 'https';
+import BorneCircuitBreaker from "./lib/borneCircuitBreaker.js";
 rax.attach();
-module.exports = {
+const circuitBreaker ={ 
     ajaxInstance: (breakerConfig) => {
       const axiosAgent = axios.create({
         httpAgent: new http.Agent({
@@ -87,3 +87,4 @@ module.exports = {
       return axiosAgent;
     }
 }
+export default circuitBreaker;

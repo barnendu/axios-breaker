@@ -36,7 +36,7 @@ npm install axios-breaker
 ## Usage
 To use this library for all ajax call. 
 ```
-const breaker = require('axios-breaker');
+import circuitBreaker from 'axios-breaker';
 ```
 ## Configuration
 ```
@@ -62,7 +62,7 @@ const breaker = require('axios-breaker');
 ```
 # Implementation
 ```
-const instance = breaker.ajaxInstance(config);
+const instance = circuitBreaker.ajaxInstance(config);
 GET Example:
  instance
   .get('API_END_POINT')
